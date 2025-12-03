@@ -15,11 +15,17 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 final class UserController extends AbstractController
 {
     #[Route('/admin/user', name: 'app_admin_user_index')]
-    public function index(UserRepository $userRepository, UserService $userService): Response
+    public function index(UserRepository $userRepository, UserService $userService, EntityManagerInterface $em): Response
     {
         $users = $userRepository->findBy([], ['lastLoginTime' => 'DESC']);
 
         $datesPretty = $userService->transformDatesPretty($users);
+
+        $user = $this->getUser();
+        if (isset($user)){
+            $user->setLastLoginTime();
+            $em->flush();
+        }
 
         return $this->render('admin/user/index.html.twig', [
             'users' => $users,
