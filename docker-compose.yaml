@@ -1,0 +1,32 @@
+services:
+    app:
+        image: webdevops/php-nginx-dev:8.4
+        restart: on-failure
+        environment:
+            WEB_DOCUMENT_ROOT: /app/public
+            WEB_DOCUMENT_INDEX: index.php
+            PHP_DISMOD: ioncube # https://github.com/webdevops/Dockerfile/issues/523
+        ports:
+            -   target: 80
+                published: 8010
+        volumes:
+            - ./app:/app
+        working_dir: /app
+
+    database:
+        image: mysql:8.4.5
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+            MYSQL_DATABASE: task4
+            MYSQL_USER: user
+            MYSQL_PASSWORD: pass
+            MYSQL_ROOT_PASSWORD: root
+        ports:
+            -   target: 3306
+                published: 3306
+        volumes:
+#            - ./data/database:/var/lib/mysql
+            - db-data:/var/lib/mysql:rw
+
+volumes:
+    db-data:
