@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block body %}
+
+    <div class="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card-group d-block d-md-flex row">
+                        <div class="card col-md-7 p-4 mb-0">
+                            <div class="card-body">
+
+                                <form method="post">
+                                    {% if error %}
+                                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                    {% endif %}
+
+                                    {% if app.user %}
+                                        <div class="mb-3">
+                                            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                        </div>
+                                    {% endif %}
+
+                                    <h2>Login</h2>
+                                    <p class="text-body-secondary">Sign In to your account</p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">
+                                          <i class="bi bi-person"></i>
+                                        </span>
+                                        <input type="email" value="{{ last_username }}" name="_username" placeholder="Email" id="username" class="form-control" autocomplete="email" required autofocus>
+                                    </div>
+                                    <div class="input-group mb-4">
+                                        <span class="input-group-text">
+                                          <i class="bi bi-lock"></i>
+                                        </span>
+                                        <input type="password" name="_password" id="password" placeholder="Password" class="form-control" autocomplete="current-password" required>
+                                        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+                                    </div>
+
+                                    <div class="checkbox mb-3">
+                                        <input type="checkbox" name="_remember_me" id="_remember_me">
+                                        <label for="_remember_me">Remember me</label>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary px-4" type="submit">Login</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                        <div class="card col-md-5 text-white bg-primary py-5">
+                            <div class="card-body text-center">
+                                <div>
+                                    <h2 class="mb-3">Sign up</h2>
+                                    <p> <b>Not registered yet?</b> Join our platform to unlock all features! Registration only takes a couple of minutes, and you'll be ready to get started.</p>
+                                    <a href="{{ path('app_register') }}" class="btn btn-lg btn-outline-light mt-3">Register Now!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

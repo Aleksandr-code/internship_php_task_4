@@ -146,6 +146,15 @@
             "./config/packages/mailer.yaml"
         ]
     },
+    "symfony/mailtrap-mailer": {
+        "version": "7.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "7.2",
+            "ref": "e1d25e0fab8778b977233aff6762d3791eab3155"
+        }
+    },
     "symfony/maker-bundle": {
         "version": "1.65",
         "recipe": {
@@ -240,7 +249,7 @@
         "files": [
             "./assets/controllers.json",
             "./assets/controllers/csrf_protection_controller.js",
-            "./assets/controllers/hello_controller.js",
+            "./assets/controllers/user_controller.js",
             "./assets/stimulus_bootstrap.js"
         ]
     },
@@ -318,6 +327,9 @@
         "files": [
             "./config/packages/messenger.yaml"
         ]
+    },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.17.4"
     },
     "twig/extra-bundle": {
         "version": "v3.22.1"
