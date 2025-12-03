@@ -1,3 +1,5 @@
+name: "task4"
+
 services:
     app:
         image: webdevops/php-nginx-dev:8.4
