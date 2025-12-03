@@ -10,4 +10,4 @@ COPY . /app
 
 EXPOSE 80
 
-CMD ["supervisord", "-c", "/etc/supervisord.conf"]
+CMD ["supervisord"]
