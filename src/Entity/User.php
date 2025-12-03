@@ -40,9 +40,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column]
-    private bool $isVerified = false;
-
     #[ORM\Column(type: 'datetime')]
     private ?\DateTime $lastLoginTime = null;
 
@@ -130,19 +127,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // @deprecated, to be removed when upgrading to Symfony 8
     }
 
-    public function isVerified(): bool
-    {
-        return $this->isVerified;
-    }
-
     public function setIsVerified(bool $isVerified): static
-    {
-        $this->isVerified = $isVerified;
-
-        return $this;
-    }
-
-    public function setIsVerifiedNew(bool $isVerified): static
     {
         if (!$isVerified){
             $this->roles[] = User::ROLE_UNVERIFIED;
