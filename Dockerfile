@@ -10,9 +10,6 @@ COPY . /app
 
 RUN composer install
 
-ENV APP_ENV=prod
-ENV APP_DEBUG=0
-
 EXPOSE 80
 
 CMD ["supervisord"]
