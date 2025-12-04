@@ -8,7 +8,10 @@ WORKDIR /app
 
 COPY . /app
 
-RUN composer install
+RUN composer install --no-dev --optimize-autoloader --classmap-authoritative
+
+ENV APP_ENV=prod
+ENV APP_DEBUG=0
 
 EXPOSE 80
 
